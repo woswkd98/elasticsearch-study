@@ -7,14 +7,15 @@ import axios from 'axios';
 const Person = (props) => {
 
     const get = () => {
-        return axios.get('/persons/' + 1)
+        return axios.get('/persons')
             .then(res => console.log(res));
     }
-
+    
     const post = () => {
+        
         return axios.post('/persons', {
-            name : "john",
-            age : 20
+            name :"asdga",
+            age : 243
         }).then(res => console.log(res));
     }
 

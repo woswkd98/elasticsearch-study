@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 import javax.persistence.Id;
 
-//import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/*
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,5 +27,5 @@ public class Person {
     private String name;
     private int age;
 
-}*/
+}
 

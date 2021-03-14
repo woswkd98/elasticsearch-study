@@ -14,30 +14,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//import com.example.demo.entity.Person;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
-//import com.example.demo.repository.elasticsearch.PersonRepository;
+import com.example.demo.entity.Person;
+
+import com.example.demo.repository.elasticsearch.PersonRepository;
+import com.example.demo.repository.master.UserRepository;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
 @RestController
 @RequestMapping("/")
 public class PersonController {
-    /*
-    private final ElasticsearchOperations elasticsearchOperations;
+    //Repository로 대체 
+    //private final ElasticsearchOperations elasticsearchOperations;
     private final PersonRepository personRepository;
 
     public PersonController(
-            ElasticsearchOperations elasticsearchOperations,
+            //ElasticsearchOperations elasticsearchOperations,
             PersonRepository personRepository
         ) {
-            this.elasticsearchOperations = elasticsearchOperations;
+            //this.elasticsearchOperations = elasticsearchOperations;
             this.personRepository = personRepository;
-    }*/
-    /*
+    }
+    
     @PostMapping("/persons")
-    public ResponseEntity<String> save(@RequestBody Person person) {
+    public ResponseEntity<Person> save(@RequestBody Person person) {
         
+        /*
         IndexQuery indexQuery = new IndexQueryBuilder()
             .withId(person.getId())
             .withObject(person)
@@ -45,19 +54,30 @@ public class PersonController {
         
         String documentId = this.elasticsearchOperations.index(
             indexQuery, IndexCoordinates.of("person"));
-        
+        */
+        Person rs = personRepository.save(person);
         return ResponseEntity.ok().body(
-            documentId
+            rs
         );
     }
 
-    @GetMapping("/persons") 
+    @GetMapping("/persons/{id}") 
     public ResponseEntity<Person> findById(@PathVariable("id") Long id) {
-
+ 
+        
         return ResponseEntity.ok().body(
             personRepository.findById(id).get()
         );
-    }*/
+    }
+
+    @GetMapping(value="/persons")
+    public ResponseEntity<Long> getCount() {
+        
+        return ResponseEntity.ok().body(
+            personRepository.count()
+        );
+    }
+    
 
 
 

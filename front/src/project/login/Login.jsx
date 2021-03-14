@@ -7,7 +7,7 @@ const Login = (props) => {
    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
+   /* 
     const handleSubmit = (e) => {
         e.preventDefault();
         apiClient.get('/sanctum/csrf-cookie') // 생텀 로그인 핵심 
@@ -26,7 +26,7 @@ const Login = (props) => {
         axios.get('/api/logout').then(res =>{
             console.log(res);
         });
-    }
+    }*/
     return (
         <div>
          <form onSubmit={handleSubmit}>
@@ -48,7 +48,7 @@ const Login = (props) => {
                 />
                 <button type="submit">Login</button>  
             </form>
-            <button onClick={logout}>Logout</button>
+            
         </div>
     );
 }
