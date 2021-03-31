@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.entity.Person;
 
 import com.example.demo.repository.elasticsearch.PersonRepository;
 import com.example.demo.repository.master.UserRepository;
+import com.google.common.collect.Lists;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -56,6 +56,7 @@ public class PersonController {
             indexQuery, IndexCoordinates.of("person"));
         */
         Person rs = personRepository.save(person);
+
         return ResponseEntity.ok().body(
             rs
         );
@@ -71,12 +72,13 @@ public class PersonController {
     }
 
     @GetMapping(value="/persons")
-    public ResponseEntity<Long> getCount() {
+    public ResponseEntity<List<Person>> getAll() {
         
         return ResponseEntity.ok().body(
-            personRepository.count()
+            personRepository.findByNameAndAge("사람", 125)    
         );
     }
+
     
 
 
